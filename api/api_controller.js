@@ -38,7 +38,6 @@ const getEarnAmount = async (betArray, diceArray, diceSum) => {
     for (let _betArray of betArray) {
         if (_betArray.index > 5 && _betArray.index < 21) {
             let amount = await combination_(_betArray, diceArray);
-            console.log("com=>>", amount);
             if (amount > 0) {
                 array.push(_betArray.index);
             }
@@ -83,7 +82,6 @@ const getEarnAmount = async (betArray, diceArray, diceSum) => {
         }
     }
     array.push(earnAmount);
-    console.log("array", array);
     return array;
 }
 const single_ = (betArray, diceArray) => {
@@ -458,10 +456,10 @@ module.exports = {
             }
 
             try {
-                // await axios.post(process.env.PLATFORM_SERVER + "api/games/bet", {
-                //     token: users[token].token,
-                //     amount: users[token].betAmount
-                // });
+                await axios.post(process.env.PLATFORM_SERVER + "api/games/bet", {
+                    token: users[token].token,
+                    amount: users[token].betAmount
+                });
             } catch (err) {
                 throw new Error("BET ERROR!");
             }
@@ -483,11 +481,11 @@ module.exports = {
                 throw new Error("DATA ERROR!");
             }
             try {
-                // await axios.post(process.env.PLATFORM_SERVER + "api/games/winlose", {
-                //     token: users[token].token,
-                //     amount: earnAmount,
-                //     winState: earnAmount > 0 ? true : false
-                // });
+                await axios.post(process.env.PLATFORM_SERVER + "api/games/winlose", {
+                    token: users[token].token,
+                    amount: earnAmount,
+                    winState: earnAmount > 0 ? true : false
+                });
             } catch (err) {
                 throw new Error("SERVER ERROR!");
             }

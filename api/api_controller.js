@@ -445,7 +445,6 @@ module.exports = {
             let earnAmount = 0;
 
             const { token, betAmount, dice_mark } = req.body;
-
             const bet_Amount = parseFloat(betAmount);
             const diceMark = dice_mark.split(",");
             const betArray = await getbetArray(diceMark);
